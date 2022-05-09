@@ -1,11 +1,11 @@
 RSpec.describe Tweet, type: :model do
   describe 'validations' do
-    it { should validate_presence_of("content") }
+    it { is_expected.to validate_presence_of("content") }
   end
 
   describe 'associations' do
-    it { should belong_to(:user) }
-    it { should have_many(:likes) }
-    it { should have_many(:liking_users).through(:likes).source(:user) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:likes) }
+    it { is_expected.to have_many(:liking_users).through(:likes).source(:user) }
   end
 end

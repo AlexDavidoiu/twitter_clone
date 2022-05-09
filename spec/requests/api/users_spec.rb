@@ -167,7 +167,7 @@ RSpec.describe 'Users API', type: :request do
       end
 
       specify { expect(api_response).to have_http_status(404) }
-      specify { expect(JSON.parse(api_response.body)).to match(hash_including("errors" => ["User not found"])) }
+      specify { expect(JSON.parse(api_response.body)).to match("errors" => ["User not found"]) }
     end
 
     context "when name not present" do
