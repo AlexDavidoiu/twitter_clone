@@ -1,5 +1,5 @@
 class TweetSerializer < ActiveModel::Serializer
-  attributes :content
+  attributes :id, :content
 
   belongs_to :user
 end
