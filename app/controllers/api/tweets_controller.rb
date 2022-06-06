@@ -1,6 +1,8 @@
 module Api
-  class TweetsController < ActionController::Base
+  class TweetsController < ApplicationController
     protect_from_forgery with: :null_session
+    before_action :authorize_request, except: :create
+    # before_action :find_user, except: %i[create index]
 
     def index
       render json: Tweet.all

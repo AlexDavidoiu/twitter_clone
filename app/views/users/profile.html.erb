@@ -1,0 +1,27 @@
+<h1><%= @user.name %>'s Profile</h1>
+<div><%= @user.followers.count %> followers</div>
+<div><%= @user.followings.count %> followings</div>
+<br>
+<div><b>Email:</b> <%= @user.email %></div>
+<% if @user.bio %>
+  <div><b>Bio:</b> <%= @user.bio %></div>
+<% else %>
+  <div>Bio is missing. <%= link_to "Want to change that?", profile_edit_path %></div>
+<% end %>
+<h2>Your tweets</h2>
+<% if @user.tweets.empty? %>
+  <div>You don't have any tweets.</div>
+  <%= link_to "Post something :)", "tweets/new" %>
+<% else%>
+  <% @user.tweets.each do |tweet| %>
+    <div><%= tweet.content %></div>
+  <% end %>
+  <br>
+  <%= link_to "Post something new?", "tweets/new" %>
+<% end %>
+<br><br>
+<%= link_to "Update your profile", profile_edit_path %>
+<br>
+<%= button_to "Logout", logout_path, method: :delete %>
+<br>
+<%= link_to "Homepage", root_path %>

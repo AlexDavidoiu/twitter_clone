@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  has_secure_password
+
   validates :name, presence: true
-  validates :bio, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/ }
+  # validates :password, presence: true
 
   has_many :tweets, dependent: :destroy
   has_many :likes

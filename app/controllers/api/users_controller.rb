@@ -1,6 +1,8 @@
 module Api
-  class UsersController < ActionController::Base
+  class UsersController < ApplicationController
     protect_from_forgery with: :null_session
+    before_action :authorize_request, except: :create
+    # before_action :find_user, except: %i[create index]
 
     def index
       render json: User.all
@@ -13,7 +15,7 @@ module Api
     end
 
     def create
-      @user = User.new(params.require(:user).permit(:name, :bio, :email))
+      @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
   
       if @user.save
         render json: @user, status: :created

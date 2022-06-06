@@ -1,0 +1,13 @@
+<h1>Recent tweets</h1>
+<% if @tweets.empty? %>
+  <div>There are no recent tweets.</div>
+<% else %>
+  <% @tweets.each do |tweet| %>
+    <div><b><%= link_to tweet.user.name, "users/#{tweet.user.id}" %></b> tweeted:</div>
+    <div><%= tweet.content %></div>
+    <%= button_to "Like", "/api/tweets/#{tweet.id}/like", method: :create %>
+    <br>
+  <% end %>
+<% end %>
+
+<%= link_to "Return to homepage", root_path %>

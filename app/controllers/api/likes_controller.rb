@@ -1,10 +1,11 @@
 module Api
-  class LikesController < ActionController::Base
+  class LikesController < ApplicationController
     protect_from_forgery with: :null_session
+    before_action :authorize_request
 
     def create
       @tweet = Tweet.find(params[:tweet_id])
-      @user = User.find(params[:user_id])
+      @user = @current_user
       @like = Like.new(user: @user, tweet: @tweet)
       if @like.save
         render json: @like, status: :created

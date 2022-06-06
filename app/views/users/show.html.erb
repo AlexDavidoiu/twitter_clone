@@ -1,0 +1,17 @@
+<h1><%= @user.name %>'s Profile</h1>
+<div><%= @user.followers.count %> followers</div>
+<div><%= @user.followings.count %> followings</div>
+<br>
+<div>Email: <%= @user.email %></div>
+<div>Bio: <%= @user.bio %></div>
+
+<h2><%= @user.name %>'s Tweets</h2>
+<% if @user.tweets.empty? %>
+  <div><%= @user.name %> doesn't have any tweets.</div>
+<% else%>
+  <% @user.tweets.each do |tweet| %>
+    <div><%= tweet.content %></div>
+  <% end %>
+<% end %>
+<br>
+<%= link_to "Return to homepage", root_path %>
